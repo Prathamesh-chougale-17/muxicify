@@ -90,13 +90,13 @@ export function HeaderMegaMenu() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <Link href="/" className={classes.link}>
+          <Link href="/" className={classes.link} onClick={closeDrawer}>
             Home
           </Link>
-          <Link href="/music" className={classes.link}>
+          <Link href="/music" className={classes.link} onClick={closeDrawer}>
             Music
           </Link>
-          <Link href="/feedback" className={classes.link}>
+          <Link href="/feedback" className={classes.link} onClick={closeDrawer}>
             Feedback
           </Link>
 
