@@ -32,7 +32,9 @@ export function HeaderMegaMenu() {
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           {/* <Esport size={30} /> */}
-          <Image src={Esport} height={80} width={80} alt="Esport" />
+          <Link href="/">
+            <Image src={Esport} height={80} width={80} alt="Esport" />
+          </Link>
           <Group visibleFrom="sm">
             <Group h="100%" gap={0} visibleFrom="sm">
               <Link href="/" className={classes.link}>
