@@ -1,10 +1,4 @@
-import {
-  getMoodBySlug,
-  getGenre,
-  getMusic,
-  getAuth,
-  getGenreBySlug,
-} from "@/sanity/sanity-util";
+import { getMoodBySlug, getMusic, getGenreBySlug } from "@/sanity/sanity-util";
 import React from "react";
 import Image from "next/image";
 import GameBlock from "@/components/Cards/GameBlock";
@@ -30,7 +24,7 @@ const TournamentPage = async ({ params }: { params: { music: string } }) => {
             <h1 className="text-4xl">{mood.name} Music</h1>
             {music?.length > 0 ? (
               music.map((p) =>
-                p.genreid === genre._id ? (
+                p.moodid === mood._id ? (
                   <Link href={`/music/${mood.slug}/${p.slug}`} key={p._id}>
                     {p.artist.map((a) => (
                       <GameBlock
@@ -60,11 +54,11 @@ const TournamentPage = async ({ params }: { params: { music: string } }) => {
             className="w-full h-[500px]"
           />
           <div className="text-center pt-4">
-            <h1 className="text-4xl">{genre.name} Music</h1>
+            <h1 className="text-4xl">{genre?.name} Music</h1>
             {music?.length > 0 ? (
               music.map((p) =>
                 p.genreid === genre._id ? (
-                  <Link href={`/music/${mood.slug}/${p.slug}`} key={p._id}>
+                  <Link href={`/music/${genre.slug}/${p.slug}`} key={p._id}>
                     {p.artist.map((a) => (
                       <GameBlock
                         key={p._id}
@@ -81,6 +75,12 @@ const TournamentPage = async ({ params }: { params: { music: string } }) => {
               <div>No Music found</div>
             )}
           </div>
+        </div>
+      )}
+      {!(genre || mood) && (
+        <div className="text-center text-xl">
+          No Music found
+          {genre}
         </div>
       )}
     </main>
