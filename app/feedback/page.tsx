@@ -1,19 +1,17 @@
 "use client";
-import { Button, TextInput, Select } from "@mantine/core";
+import { Button, TextInput, Select, Rating, Group, Box } from "@mantine/core";
 // import { SubmitHandler, useForm } from "react-hook-form";
 import { createFormContext } from "@mantine/form";
 import { SubmitHandler } from "react-hook-form";
 import { Toaster } from "sonner";
 // import { useForm } from "@mantine/form";
 export interface EventSchema {
-  eventname: string;
-  startdate: string;
-  player: number;
-  prizepool: string;
-  organisationName: string;
-  participationfee: string;
-  location: string;
-  gamedata: string;
+  name: string;
+  email: string;
+  experience: string;
+  anyOtherFeedback: string;
+  rating: number;
+  message: string;
 }
 const [FormProvider, useFormContext, useForm] =
   createFormContext<EventSchema>();
@@ -23,76 +21,44 @@ function ContextField() {
   return (
     <>
       <TextInput
-        label="Event Name"
-        placeholder="Event Name"
+        label="Please Enter your Name"
+        placeholder="Name"
         withAsterisk
-        {...form.getInputProps("eventname")}
+        {...form.getInputProps("name")}
       />
       <TextInput
-        label="Enter the Start Date of Event"
-        placeholder="Event Start Date"
+        label="Enter the Email Address"
+        placeholder="Email"
         withAsterisk
         mt="md"
-        {...form.getInputProps("startdate")}
+        {...form.getInputProps("email")}
       />
       <TextInput
         label="Enter the Number of Player"
         placeholder="Number of Player"
         withAsterisk
         mt="md"
-        {...form.getInputProps("player")}
+        {...form.getInputProps("experience")}
       />
       <TextInput
-        label="Enter your Pize Poll"
+        label="Enter your any other feedback"
         placeholder="Prize Poll"
-        withAsterisk
         mt="md"
-        {...form.getInputProps("prizepool")}
+        {...form.getInputProps("anyOtherFeedback")}
       />
+      <Group mt="md">
+        <Box className="font-bold">
+          Please give rating for the service provided
+        </Box>
+        <Rating {...form.getInputProps("rating")} />
+        {/* <Rating  onClick={(e) => setValue()}/> */}
+      </Group>
       <TextInput
-        label="Enter your Organisation Name"
-        placeholder="Organisation Name"
+        label="Enter your Message"
+        placeholder="Message"
         withAsterisk
         mt="md"
-        {...form.getInputProps("organisationName")}
-      />
-      <TextInput
-        label="Enter your Participation Fee"
-        placeholder="Participation Fee"
-        withAsterisk
-        mt="md"
-        {...form.getInputProps("participationfee")}
-      />
-      <TextInput
-        label="Enter your Location"
-        placeholder="Location"
-        withAsterisk
-        mt="md"
-        {...form.getInputProps("location")}
-      />
-      <Select
-        label="Enter your Game Domain"
-        placeholder="Game Domain"
-        limit={5}
-        data={[
-          "ea-fc-24",
-          "fortnite",
-          "tekken-7",
-          "counter-strike-go",
-          "clash-royal",
-          "pubg-mobile",
-          "valorant",
-          "rocket-league",
-          "street-fighter-6",
-          "overwatch-2",
-          "brawl-stars",
-          "mobile-legends",
-          "dota-2",
-          "minecraft",
-          "fifa-23",
-        ]}
-        searchable
-        {...form.getInputProps("gamedata")}
+        {...form.getInputProps("message")}
       />
 
       {/* <Group justify="flex-start" mt="md"> */}
@@ -115,64 +81,35 @@ const FeedbackForm = () => {
 
   const form = useForm({
     initialValues: {
-      eventname: "",
-      startdate: "",
-      player: 0,
-      prizepool: "",
-      organisationName: "",
-      participationfee: "",
-      location: "",
-      gamedata: "",
+      name: "",
+      email: "",
+      experience: "",
+      anyOtherFeedback: "",
+      rating: 0,
+      message: "",
     },
     validate: {
-      eventname: (value) => {
-        if (!value) {
-          return "Event Name is required";
+      name: (value) => {
+        if (value.length < 3) {
+          return "Name should be at least 3 characters long";
         }
         return true;
       },
-      startdate: (value) => {
-        if (!value) {
-          return "Start Date is required";
+      email: (value) => {
+        if (!value.includes("@")) {
+          return "Please enter a valid email";
         }
         return true;
       },
-      player: (value) => {
-        if (!value) {
-          return "Number of Players is required";
-        }
-        if (isNaN(value)) {
-          return "Number of Players must be a valid number";
+      experience: (value) => {
+        if (value.length < 3) {
+          return "Experience should be at least 3 characters long";
         }
         return true;
       },
-      prizepool: (value) => {
-        if (!value) {
-          return "Prize Pool is required";
-        }
-        return true;
-      },
-      organisationName: (value) => {
-        if (!value) {
-          return "Organisation Name is required";
-        }
-        return true;
-      },
-      participationfee: (value) => {
-        if (!value) {
-          return "Participation Fee is required";
-        }
-        return true;
-      },
-      location: (value) => {
-        if (!value) {
-          return "Location is required";
-        }
-        return true;
-      },
-      gamedata: (value) => {
-        if (!value) {
-          return "Game Domain is required";
+      message: (value) => {
+        if (value.length < 3) {
+          return "Message should be at least 3 characters long";
         }
         return true;
       },
