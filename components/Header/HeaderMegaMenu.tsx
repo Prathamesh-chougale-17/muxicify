@@ -91,11 +91,11 @@ export function HeaderMegaMenu() {
           <Link href="/" className={classes.link}>
             Home
           </Link>
-          <Link href="/events" className={classes.link}>
-            Events
+          <Link href="/music" className={classes.link}>
+            Music
           </Link>
-          <Link href="/create" className={classes.link}>
-            Create Tournament
+          <Link href="/feedback" className={classes.link}>
+            Feedback
           </Link>
 
           <Divider my="sm" />
