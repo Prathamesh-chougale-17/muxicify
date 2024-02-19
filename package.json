@@ -21,11 +21,12 @@
     "next-auth": "^4.24.5",
     "next-sanity": "^7.1.4",
     "query-string": "^8.2.0",
-    "react": "^18",
+    "react": "^18.2.0",
     "react-countdown": "^2.3.5",
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
     "react-tilt": "^1.0.2",
+    "sharp": "^0.33.2",
     "sonner": "^1.4.0",
     "zod": "^3.22.4"
   },

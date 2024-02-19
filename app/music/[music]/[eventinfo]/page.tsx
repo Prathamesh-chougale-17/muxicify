@@ -1,7 +1,6 @@
 import ArtistName from "@/components/Cards/ArtistName";
 import { getMusicbySlug } from "@/sanity/sanity-util";
 import Image from "next/image";
-import React from "react";
 
 const SelectedMusic = async ({ params }: { params: { eventinfo: string } }) => {
   const music = await getMusicbySlug(params.eventinfo);

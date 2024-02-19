@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import HeroImage from "@/public/piano.gif";
 import Link from "next/link";
 

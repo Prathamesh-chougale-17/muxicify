@@ -1,5 +1,4 @@
 import { getMoodBySlug, getMusic, getGenreBySlug } from "@/sanity/sanity-util";
-import React from "react";
 import Image from "next/image";
 import GameBlock from "@/components/Cards/GameBlock";
 import Link from "next/link";

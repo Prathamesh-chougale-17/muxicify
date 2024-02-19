@@ -1,8 +1,6 @@
 import TiltGamesCard from "@/components/Cards/HoverCard";
 import { getMood, getGenre, MoodProps, GenreProps } from "@/sanity/sanity-util";
 
-import React from "react";
-
 export const revalidate = 600;
 
 const EventsPage = async () => {
