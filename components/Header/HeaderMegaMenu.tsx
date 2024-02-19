@@ -59,7 +59,10 @@ export function HeaderMegaMenu() {
                 </Menu.Dropdown>
               </Menu>
             ) : (
-              <HoverButton />
+              // <HoverButton />
+              <Link href="/api/auth/signin">
+                <Button className="bg-blue-500">Sign in</Button>
+              </Link>
             )}
             {/* <HoverButton/> */}
           </Group>

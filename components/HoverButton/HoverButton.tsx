@@ -28,7 +28,7 @@ const HoverButton = () => {
             <IconBuilding style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          Organisation
+          Author
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>
