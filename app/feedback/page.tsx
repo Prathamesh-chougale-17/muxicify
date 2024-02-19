@@ -34,13 +34,6 @@ function ContextField() {
         {...form.getInputProps("email")}
       />
       <TextInput
-        label="Enter the Number of Player"
-        placeholder="Number of Player"
-        withAsterisk
-        mt="md"
-        {...form.getInputProps("experience")}
-      />
-      <TextInput
         label="Enter your any other feedback"
         placeholder="Prize Poll"
         mt="md"
@@ -74,7 +67,6 @@ function ContextField() {
 const FeedbackForm = () => {
   const processForm: SubmitHandler<EventSchema> = async (data) => {
     console.log(data);
-    // console.log(Responseconsole.log(Sendmessage)
   };
 
   // const form = useFormContext();
