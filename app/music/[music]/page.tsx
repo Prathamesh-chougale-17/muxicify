@@ -47,12 +47,14 @@ const TournamentPage = async ({ params }: { params: { music: string } }) => {
             music.map((p) =>
               p.moodid === mood._id ? (
                 <Link href={`/music/${mood.slug}/${p.slug}`} key={p._id}>
-                  <GameBlock
-                    key={p._id}
-                    name={p.name}
-                    image={p.image}
-                    artist="Udit Narayan"
-                  />
+                  {p.artist.map((a) => (
+                    <GameBlock
+                      key={p._id}
+                      name={p.name}
+                      image={p.image}
+                      _id={a._ref}
+                    />
+                  ))}
                 </Link>
               ) : (
                 <div key={p._id}>No Music found</div>

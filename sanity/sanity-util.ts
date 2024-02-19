@@ -3,32 +3,32 @@ import { groq } from "next-sanity";
 import { buildQuery } from "./buildQuery";
 
 export interface MusicProps {
-    artist: string
-    slug: string
-    genre: string
-    music: string
-    _id: string
-    image: string
-    name: string
-    moodid: string
+  artist: [{ _ref: string }]
+  slug: string
+  genreid: string
+  music: string
+  _id: string
+  image: string
+  name: string
+  moodid: string
 }
 export interface MoodProps {
-    _id: string
-    name: string
-    image: string
-    slug: string
+  _id: string
+  name: string
+  image: string
+  slug: string
 }
 export interface GenreProps {
-    _id: string
-    name: string
-    image: string
-    slug: string
+  _id: string
+  name: string
+  image: string
+  slug: string
 }
 export interface AuthProps {
-    _id: string
-    image: string
-    name: string
-    biography: string
+  _id: string
+  image: string
+  name: string
+  biography: string
 }
 // export async function getProject({ query, category, page }: GetResourcesParams): Promise<Project[]> {
 
@@ -123,20 +123,20 @@ export interface AuthProps {
 // }
 
 export async function getMusic(): Promise<MusicProps[]> {
-    return client.fetch(groq`*[_type=='music']{
+  return client.fetch(groq`*[_type=='music']{
         "image": image.asset->url,
         name,
         "moodid": mood[0]._ref,
-        "artist": artist[0]._ref,
+        artist,
           "slug": slug.current,
-        "genre" : genre[0]._ref,
+        "genreid" : genre[0]._ref,
          "music": music.asset->url,
         _id
       }
       `)
 }
 export async function getMood(): Promise<MoodProps[]> {
-    return client.fetch(groq`*[_type=='mood']{
+  return client.fetch(groq`*[_type=='mood']{
         "image": image.asset->url,
           name,
         "slug": slug.current,
@@ -146,7 +146,7 @@ export async function getMood(): Promise<MoodProps[]> {
 }
 
 export async function getMoodBySlug(slug: string): Promise<MoodProps> {
-    return client.fetch(groq`*[_type=='mood' && slug.current == "${slug}"][0]{
+  return client.fetch(groq`*[_type=='mood' && slug.current == "${slug}"][0]{
         "image": image.asset->url,
           name,
         "slug": slug.current,
@@ -154,10 +154,10 @@ export async function getMoodBySlug(slug: string): Promise<MoodProps> {
       }
       
       `,
-        { slug })
+    { slug })
 }
 export async function getGenre(): Promise<GenreProps[]> {
-    return client.fetch(groq`*[_type=='genre']{
+  return client.fetch(groq`*[_type=='genre']{
         "image": image.asset->url,
         name,
         "slug": slug.current,
@@ -166,22 +166,34 @@ export async function getGenre(): Promise<GenreProps[]> {
       `)
 }
 export async function getGenreBySlug(slug: string): Promise<GenreProps> {
-    return client.fetch(groq`*[_type=='genre' && slug.current == "${slug}"][0]{
+  return client.fetch(groq`*[_type=='genre' && slug.current == "${slug}"][0]{
         "image": image.asset->url,
         name,
         "slug": slug.current,
         _id
       }
       `, {
-        slug
-    })
+    slug
+  })
 }
 export async function getAuth(): Promise<AuthProps[]> {
-    return client.fetch(groq`*[_type=='author']{
+  return client.fetch(groq`*[_type=='author']{
         "image": image.asset->url,
         name,
         biography,
         _id
       }
       `)
+}
+
+export async function getAuthById(_id: string): Promise<AuthProps> {
+  return client.fetch(groq`*[_type=='author' && _id == "${_id}"][0]{
+        "image": image.asset->url,
+        name,
+        biography,
+        _id
+      }
+      `, {
+    _id
+  })
 }

@@ -24,7 +24,7 @@ const EventsPage = async () => {
         <div>No Games found</div>
       )} */}
       {/* first  plot the Genre and add beutiful heading as genre and then add mood below the genre*/}
-      <h1 className="text-4xl text-white p-4 font-bold border-b-2 border-white">
+      <h1 className="text-4xl text-white p-4 font-bold border-b-2 border-white text-center">
         Genre
       </h1>{" "}
       <div className="flex w-full flex-wrap justify-center  sm:justify-center">
@@ -43,7 +43,7 @@ const EventsPage = async () => {
         )}
       </div>
       {/* <h1 className="text-4xl text-white">Mood</h1> design this more beytiful*/}
-      <h1 className="text-4xl text-white p-4 font-bold border-b-2 border-white">
+      <h1 className="text-4xl text-white p-4 font-bold border-b-2 border-white text-center">
         Mood
       </h1>
       <div className="flex w-full flex-wrap justify-evenly  sm:justify-center">
