@@ -11,6 +11,7 @@ export interface MusicProps {
   image: string
   name: string
   moodid: string
+  price: number
 }
 export interface MoodProps {
   _id: string
@@ -131,7 +132,8 @@ export async function getMusic(): Promise<MusicProps[]> {
           "slug": slug.current,
         "genreid" : genre[0]._ref,
          "music": music.asset->url,
-        _id
+        _id,
+        price
       }
       `)
 }
@@ -195,5 +197,22 @@ export async function getAuthById(_id: string): Promise<AuthProps> {
       }
       `, {
     _id
+  })
+}
+
+export async function getMusicbySlug(slug: string): Promise<MusicProps> {
+  return client.fetch(groq`*[_type=='music' && slug.current == "${slug}"][0]{
+        "image": image.asset->url,
+        name,
+        "moodid": mood[0]._ref,
+        artist,
+          "slug": slug.current,
+        "genreid" : genre[0]._ref,
+         "music": music.asset->url,
+        _id,
+        price
+      }
+      `, {
+    slug
   })
 }

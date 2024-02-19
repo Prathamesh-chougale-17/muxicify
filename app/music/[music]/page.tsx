@@ -53,6 +53,7 @@ const TournamentPage = async ({ params }: { params: { music: string } }) => {
                       name={p.name}
                       image={p.image}
                       _id={a._ref}
+                      price={p.price}
                     />
                   ))}
                 </Link>

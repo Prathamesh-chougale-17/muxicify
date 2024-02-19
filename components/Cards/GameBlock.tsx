@@ -5,9 +5,10 @@ interface GameBlockProps {
   name: string;
   image: string;
   _id: string;
+  price: number;
 }
 
-const GameBlock: React.FC<GameBlockProps> = ({ name, image, _id }) => {
+const GameBlock: React.FC<GameBlockProps> = ({ name, image, _id, price }) => {
   return (
     <div className="game-block bg-gray-800 border border-gray-700 p-4 flex justify-between items-center rounded-md shadow-md hover:bg-gray-700 my-6 mx-4">
       <div className="text-lg font-semibold text-white flex items-center">
@@ -21,7 +22,7 @@ const GameBlock: React.FC<GameBlockProps> = ({ name, image, _id }) => {
       </div>
       <div className="flex justify-end">
         <div className="mr-9">
-          <div className="mx-2">Rs 200</div>
+          <div className="mx-2">Rs {price}</div>
           {/* <div>{artist}</div> */}
         </div>
       </div>
