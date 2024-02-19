@@ -21,7 +21,7 @@ const SelectedMusic = async ({ params }: { params: { eventinfo: string } }) => {
     <div className="bg-black">
       <div className="flex justify-center">
         <div className="w-1/2">
-          <h1 className="text-4xl text-white p-4 font-bold  text-center">
+          <h1 className="text-4xl text-white p-4 font-bold capitalize  text-center">
             {music.name}
           </h1>
           <div className="flex justify-center">
@@ -34,6 +34,12 @@ const SelectedMusic = async ({ params }: { params: { eventinfo: string } }) => {
                 className="h-full w-full object-cover"
               />
             </div>
+          </div>
+          <div className="flex justify-center">
+            <audio controls>
+              <source src={music.music} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
           </div>
           <div className="flex justify-center">
             <div className="w-1/2">
