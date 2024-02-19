@@ -45,7 +45,7 @@ const TournamentPage = async ({ params }: { params: { music: string } }) => {
           <h1 className="text-4xl">Musics</h1>
           {music?.length > 0 ? (
             music.map((p) =>
-              p.moodid === mood.slug ? (
+              p.moodid === mood._id ? (
                 <Link href={`/music/${mood.slug}/${p.slug}`} key={p._id}>
                   <GameBlock
                     key={p._id}
